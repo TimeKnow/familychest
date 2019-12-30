@@ -1,0 +1,30 @@
+.primary-color{
+  color: #3f51b5;
+}
+
+.pl-2{
+  padding-left: 20px;
+}
+
+.standard-height{
+  min-width: 800px;
+  min-height: 200px;
+}
+
+.notification{
+  font-size: small;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.centered{
+ text-align: center;
+  align-content: center;
+  align-items: center;
+}

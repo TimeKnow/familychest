@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <app-family-selector></app-family-selector>
+    </app-menu-handler>
+    <div class="w-100" *ngIf="!(isLoading$ | async) && !(familyIsLoading$ | async); else loadingDisplay">
+      <div>
+        <app-family-members-table [dataList]="familyUsers$ | async"
+                                  [hasActions]="!(currentUser$ | async).role.includes('CHILD')"
+                                  (emitAction)="onAction($event)"></app-family-members-table>
+      </div>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>

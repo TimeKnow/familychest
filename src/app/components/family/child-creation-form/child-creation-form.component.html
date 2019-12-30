@@ -1,0 +1,33 @@
+<mat-card class="no-border-radius">
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="formSubmit.emit()" class="form-container w-100">
+      <mat-form-field class="container-field centered">
+        <mat-label for="childEmailInput">Child Email</mat-label>
+        <input matInput class="w-100" type="text" id="childEmailInput" formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field class="container-field centered">
+        <input type="text" matInput formControlName="selectedFamily" [matAutocomplete]="autoFamilies"
+               placeholder="Select a family">
+        <mat-autocomplete #autoFamilies="matAutocomplete">
+          <mat-option *ngFor="let family of families" [value]="family.id">{{family.name}}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div class="container-field text-centered">
+        <div class="error-colored" *ngIf="generatedCode">The account was created for the code: <b>{{generatedCode}}</b>
+        </div>
+      </div>
+      <div class="container-field text-centered">
+        <b class="error-colored" *ngIf="errorMessage">{{errorMessage}}</b>
+      </div>
+      <div class="container-field centered">
+        <button class="w-100" color="accent" id="submitButton" mat-raised-button
+                type="submit"
+                [disabled]="!form.valid">
+          Create
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="menu-container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <a mat-button routerLink="/register"><h1>FamilyChest Registration</h1></a>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="w-100" *ngIf="!(isLoading$ | async)">
+      <div class="w-100 pt-2 centered">
+        <mat-radio-group [(ngModel)]="selectedFormType">
+          <mat-radio-button class="radio-button" [value]="formTypes.child">Child Account</mat-radio-button>
+          <mat-radio-button class="radio-button" [value]="formTypes.parent">Parent Account</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div [ngSwitch]="selectedFormType">
+        <app-register-parent-form *ngSwitchCase="formTypes.parent" (formSubmit)="registerParentAccount()"
+                                  [errorMessage]="errorMessage$ | async"
+                                  [registerParentForm]="registerParentForm"></app-register-parent-form>
+        <app-register-child-form *ngSwitchCase="formTypes.child" (formSubmit)="registerChildAccount()"
+                                 [errorMessage]="errorMessage$ | async"
+                                 [registerChildForm]="registerChildForm"></app-register-child-form>
+      </div>
+    </div>
+  </div>
+</div>

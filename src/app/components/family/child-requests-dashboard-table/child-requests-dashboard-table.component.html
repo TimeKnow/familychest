@@ -1,0 +1,29 @@
+<mat-card class="no-border-radius">
+  <div *ngIf="data && data.length > 0; else noData">
+    <div
+      *ngFor="let data of displayedData"
+      class="scroll-object pt-3 mt-3"
+      infiniteScroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollThrottle]="550"
+      (scrolled)="onScrollDown()"
+    >
+      <app-child-request-header [request]="data"
+                                (optionPressed)="optionPressed.emit($event)"
+                                [familyId]="familyId"></app-child-request-header>
+    </div>
+
+    <div class="message_container pt-4" *ngIf="displayedCount === data.length">
+      <mat-card class="message_card">
+        <span class="message_text">End of Catalog</span>
+      </mat-card>
+    </div>
+  </div>
+  <ng-template #noData>
+    <div class="message_container">
+      <mat-card class="message_card">
+        <span class="message_text">No new requests</span>
+      </mat-card>
+    </div>
+  </ng-template>
+</mat-card>

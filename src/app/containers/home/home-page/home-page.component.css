@@ -1,0 +1,22 @@
+.container {
+  margin-top: 5%;
+  min-width: 100%;
+  display: flex;
+}
+
+.menu-container {
+  padding-top: 5%;
+  margin: auto;
+  min-width: 500px;
+  min-height: 500px;
+}
+
+.centered {
+  text-align: center !important;
+  align-content: center !important;
+  justify-content: center !important;
+}
+
+.no-border-radius {
+  border-radius: 0;
+}

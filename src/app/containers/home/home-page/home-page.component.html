@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler></app-menu-handler>
+    <div class="w-100" *ngIf="!(isLoading$ | async)">
+      <div *ngIf="(currentUser$ | async)" [ngSwitch]="(currentUser$ | async).role">
+        <app-parent-home-view *ngSwitchCase="roles.Parent" [notification]="notification$ | async"
+                              (notificationRemove)="onNotificationRemove()">>
+        </app-parent-home-view>
+        <app-child-home-view *ngSwitchCase="roles.Child" [notification]="notification$ | async"
+                             (notificationRemove)="onNotificationRemove()"></app-child-home-view>
+      </div>
+    </div>
+  </div>
+</div>

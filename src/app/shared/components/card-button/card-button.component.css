@@ -1,0 +1,17 @@
+.card-button{
+  min-width: 100%;
+}
+
+.centered{
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.standard-height{
+  height: 300px;
+}
+.text-pre-wrap{
+  font-size: small;
+  white-space: pre-wrap !important;
+}

@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content class="standard-height pl-2">
+
+    <mat-toolbar *ngIf="notification">
+      {{notification.title}}
+      <span class="fill-remaining-space"></span>
+      <button mat-icon-button aria-label="Remove notification button" (click)="notificationRemove.emit()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="w-100 pt-4 pl-0">
+      <div class="row">
+        <div class="col-4">
+          <app-card-button title="Ask Money" description="Create an account for your child"></app-card-button>
+        </div>
+        <div class="col-4">
+          <app-card-button title="Your Requests" description="Manage your family finances"></app-card-button>
+        </div>
+        <div class="col-4">
+          <app-card-button title="Statistics" description="Manage your child requests"></app-card-button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

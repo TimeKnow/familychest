@@ -1,0 +1,32 @@
+<mat-card class="no-border-radius">
+  <mat-card-content>
+    <form [formGroup]="registerChildForm" (ngSubmit)="formSubmit.emit()" class="form-container w-100">
+      <mat-form-field class="container-field centered">
+        <mat-label for="uuidInput">UUID</mat-label>
+        <input matInput class="w-100" type="text" id="uuidInput" formControlName="uuid" required>
+      </mat-form-field>
+      <mat-form-field class="container-field centered">
+        <mat-label for="nameInput">Name</mat-label>
+        <input matInput class="w-100" type="text" id="nameInput" formControlName="name" required>
+      </mat-form-field>
+      <mat-form-field class="container-field centered">
+        <mat-label for="passwordInput">Password</mat-label>
+        <input matInput type="password" id="passwordInput"
+               formControlName="password" required>
+      </mat-form-field>
+      <div class="container-field text-centered">
+        <b class="error-colored" *ngIf="errorMessage">Invalid registration content!</b>
+      </div>
+      <div class="container-field text-centered">
+        <p>If you already have an account you can <a routerLink="/login" class="link-color">authenticate</a></p>
+      </div>
+      <div class="container-field centered">
+        <button class="w-100" color="accent" id="submitButton" mat-raised-button
+                type="submit"
+                [disabled]="!registerChildForm.valid">
+          Register
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

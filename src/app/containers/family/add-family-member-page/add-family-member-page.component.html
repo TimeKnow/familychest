@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+    </app-menu-handler>
+    <div class="w-100" *ngIf="!(isLoading$ | async)">
+      <div>
+        <app-add-family-member-form [form]="form" (formSubmit)="onAddMember()" [families]="userFamilies$ | async"
+                                    [users]="users$ | async"></app-add-family-member-form>
+      </div>
+    </div>
+  </div>
+</div>

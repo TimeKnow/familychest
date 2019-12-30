@@ -1,0 +1,71 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/"><h1>FamilyChest</h1></a>
+    <span class="fill-remaining-space"></span>
+    <div id="extended-menu">
+      <ng-content></ng-content>
+    </div>
+    <div id="doctor-menu">
+
+      <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button class="menu-btn" mat-menu-item *ngIf="currentUser" [matMenuTriggerFor]="familyMenu"
+                aria-label="Menu Family">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Family
+        </button>
+
+        <div class="menu-btn" mat-menu-item *ngIf="!currentUser; else logoutButton" routerLink="/login">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Login
+        </div>
+
+        <ng-template #logoutButton>
+          <button class="menu-btn" mat-menu-item (click)="logout.emit()">
+            <mat-icon>supervised_user_circle</mat-icon>
+            Logout
+          </button>
+        </ng-template>
+      </mat-menu>
+
+      <mat-menu #familyMenu="matMenu">
+        <button class="menu-btn" mat-menu-item
+                *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
+                routerLink="/family">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Create Family
+        </button>
+
+        <button class="menu-btn" mat-menu-item
+                *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
+                routerLink="/family/create-child-account">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Create Child Account
+        </button>
+
+        <button class="menu-btn" mat-menu-item
+                *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
+                routerLink="/family/add-member">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Add Members
+        </button>
+
+        <button class="menu-btn" mat-menu-item routerLink="/family/members">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Family Members
+        </button>
+
+        <button class="menu-btn" mat-menu-item
+                *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
+                routerLink="/family/child-requests">
+          <mat-icon>supervised_user_circle</mat-icon>
+          Child Requests Dashboard
+        </button>
+      </mat-menu>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

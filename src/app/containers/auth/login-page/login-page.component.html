@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="menu-container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <a mat-button routerLink="/login"><h1>FamilyChest Authentication</h1></a>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="w-100" *ngIf="!(isLoading$ | async)">
+      <app-login-form [loginForm]="loginForm" [errorMessage]="errorMessage$ | async"
+                      (formSubmit)="submitLogin()"></app-login-form>
+    </div>
+  </div>
+</div>

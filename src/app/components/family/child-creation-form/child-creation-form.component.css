@@ -1,0 +1,30 @@
+.form-container {
+  display: block;
+}
+
+.form-container .container-field {
+  margin-top: 20px;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.centered {
+  align-content: center !important;
+  justify-content: center !important;
+}
+
+.text-centered {
+  text-align: center !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.link-color {
+  color: #3f51b5;
+}
+
+.error-colored {
+  color: #ff4081;
+}

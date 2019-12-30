@@ -1,0 +1,47 @@
+<mat-card class="request_card">
+  <div class="request_card_image_container">
+    <img mat-card-image src="{{request.imageUrl || 'assets/static-images/none.jpg'}}" class="request_card_image"
+         alt="request image">
+  </div>
+
+  <div class="request_card_content">
+    <div class="request_card_header">
+      <span class="request_card_title">
+        <b>{{request.title}}</b>
+      </span>
+      <span class="request_card_status">
+        Status: {{request.status}}
+      </span>
+    </div>
+    <mat-divider class="request_card_divider"></mat-divider>
+    <div class="request_card_text">
+      <div class="request_card_header">
+        <p class="request_card_amount">Amount Requested: {{request.amount}}</p>
+        <div>
+          <button color="primary" mat-flat-button [matMenuTriggerFor]="menu" type="button" aria-label="request-menu">
+            Options
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item class="menu-btn w-100"
+                    (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Approve})">
+              <mat-icon>supervised_user_circle</mat-icon>
+              Approve
+            </button>
+            <button mat-menu-item class="menu-btn w-100"
+                    (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Reject})">
+              <mat-icon>supervised_user_circle</mat-icon>
+              Reject
+            </button>
+            <button mat-menu-item class="menu-btn w-100"
+                    (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Remove})">
+              <mat-icon>supervised_user_circle</mat-icon>
+              Remove
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <p [innerHTML]="request.reason"></p>
+    </div>
+
+  </div>
+</mat-card>

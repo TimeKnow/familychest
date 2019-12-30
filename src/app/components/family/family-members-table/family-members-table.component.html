@@ -1,0 +1,38 @@
+<table *ngIf="dataList" mat-table [dataSource]="dataList" class="mat-elevation-z8 w-100">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Id</th>
+    <td mat-cell *matCellDef="let element"  class="text-centered"> {{element.user.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Email</th>
+    <td mat-cell *matCellDef="let element"  class="text-centered"> {{element.user.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Name</th>
+    <td mat-cell *matCellDef="let element"  class="text-centered"> {{element.user.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Role</th>
+    <td mat-cell *matCellDef="let element"  class="text-centered"> {{element.role}} </td>
+  </ng-container>
+
+  <ng-container *ngIf="hasActions" matColumnDef="actions" class="text-centered">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <div>
+        <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="table-menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item class="menu-btn w-100" (click)="emitAction.emit('delete')">
+            <mat-icon>supervised_user_circle</mat-icon>
+            Remove
+          </button>
+        </mat-menu>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="dataHeaders; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: dataHeaders;"></tr>
+</table>

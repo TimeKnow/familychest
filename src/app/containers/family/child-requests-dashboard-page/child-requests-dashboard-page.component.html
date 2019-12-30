@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <app-family-selector></app-family-selector>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(isLoading$ | async) && !(familyStateIsLoading$ | async); else loadingDisplay">
+      <div *ngIf="(currentFamily$ | async); else noFamilySelected">
+        <app-child-requests-dashboard-table [data]="childRequests$ | async"
+                                            (optionPressed)="onActionPressed($event)"
+                                            [familyId]="(currentFamily$ | async)"></app-child-requests-dashboard-table>
+      </div>
+      <ng-template #noFamilySelected>
+        <mat-card class="no-border-radius">
+          <div class="message_container pt-4">
+            <mat-card class="message_card">
+              <span class="message_text">Please select a family</span>
+            </mat-card>
+          </div>
+        </mat-card>
+      </ng-template>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>
