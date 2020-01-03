@@ -10,6 +10,7 @@ import {ChildRequestAction, ChildRequestActionTypeArray} from '../../../core/mod
 export class ChildRequestHeaderComponent {
   @Input() request: ChildRequest;
   @Input() familyId: number;
+  @Input() hasActions = true;
   @Output() optionPressed: EventEmitter<ChildRequestAction> = new EventEmitter<ChildRequestAction>();
 
   actionTypes = ChildRequestActionTypeArray;

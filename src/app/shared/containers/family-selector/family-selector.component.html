@@ -1,9 +1,11 @@
-<form [formGroup]="form" class="pt-2 pr-2">
-  <mat-form-field class="container-field">
-    <input type="text" matInput formControlName="selectedFamily" [matAutocomplete]="autoFamilies"
-           placeholder="Select a family">
-    <mat-autocomplete #autoFamilies="matAutocomplete">
-      <mat-option *ngFor="let family of families$ | async" [value]="family.id">{{family.name}}</mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+<div class="menu-item-container pl-2">
+  <form [formGroup]="form" class="pt-2 pr-2">
+    <mat-form-field class="container-field">
+      <input type="text" matInput formControlName="selectedFamily" [matAutocomplete]="autoFamilies"
+             placeholder="Select a family">
+      <mat-autocomplete #autoFamilies="matAutocomplete">
+        <mat-option *ngFor="let family of families$ | async" [value]="family.id">{{family.name}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

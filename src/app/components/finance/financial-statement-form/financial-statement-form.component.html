@@ -1,0 +1,83 @@
+<mat-card class="no-border-radius">
+  <mat-card-content *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="formSubmit.emit()" class="form-container w-100">
+
+      <mat-form-field class="container-field centered">
+        <mat-label>Statement Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let statementType of statementTypes" [value]="statementType">
+            {{statementType}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="container-field centered">
+        <mat-label>Family</mat-label>
+        <mat-select formControlName="selectedFamily">
+          <mat-option *ngFor="let family of families" [value]="family.id">
+            {{family.id}}, {{family.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="container-field centered">
+        <mat-label for="amountInput">Amount</mat-label>
+        <input matInput class="w-100" type="number" id="amountInput" formControlName="amountInput" required>
+      </mat-form-field>
+
+      <mat-form-field class="container-field centered">
+        <mat-label for="targetInput">Target</mat-label>
+        <input matInput class="w-100" type="text" id="targetInput" formControlName="target">
+      </mat-form-field>
+
+      <div class="container-field rich-text-editor">
+        <quill-editor [styles]="editorStyles" [placeholder]="editorPlaceholder"
+                      formControlName="description">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button [title]="'Bold'" class="ql-bold" type="button"></button>
+              <button [title]="'Italic'" class="ql-italic" type="button"></button>
+              <button [title]="'Underline'" class="ql-underline" type="button"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" type="button" value="ordered"></button>
+              <button class="ql-list" type="button" value="bullet"></button>
+            </span>
+          </div>
+        </quill-editor>
+      </div>
+
+      <div class="container-field centered">
+        <mat-card>
+          <ngx-file-drop dropZoneClassName="drop_zone" (onFileDrop)="dropped($event)">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              <span>Drop picture or <a routerLink="." (click)="openFileSelector()">click here</a> to upload.</span>
+            </ng-template>
+          </ngx-file-drop>
+          <div cdkDropList cdkDropListOrientation="horizontal" class="gallery-list" (cdkDropListDropped)="drop($event)"
+               *ngIf="images.length">
+            <div class="gallery-box" *ngFor="let image of images" cdkDrag><img src="{{ image }}"
+                                                                               class="image-list-box-img">
+              <button (click)="removeImage(image)" class="delete_link" color="primary" mat-mini-fab routerLink="."
+                      type="button">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="container-field text-centered">
+        <b class="error-colored" *ngIf="errorMessage">{{errorMessage}}</b>
+      </div>
+
+      <div class="container-field centered">
+        <button class="w-100" color="accent" id="submitButton" mat-raised-button
+                type="submit"
+                [disabled]="!form.valid">
+          Create
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

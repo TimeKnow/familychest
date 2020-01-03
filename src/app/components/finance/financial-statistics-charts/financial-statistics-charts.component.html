@@ -1,0 +1,18 @@
+<div class="w-100" #chartContainer *ngIf="chartData.length>0;else noData">
+  <google-chart
+    [title]="chartTitle"
+    [type]="chartType"
+    [data]="chartData"
+    [columnNames]="chartColumns"
+    [options]="chartOptions"
+    [width]="chartContainer.offsetWidth"
+    [height]="chartHeight"
+  ></google-chart>
+</div>
+<ng-template #noData>
+  <div class="message_container">
+    <mat-card class="message_card">
+      <span class="message_text">No data to Show</span>
+    </mat-card>
+  </div>
+</ng-template>

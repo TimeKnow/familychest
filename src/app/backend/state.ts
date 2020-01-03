@@ -6,6 +6,17 @@ import {FamilyUser} from '../core/models/family/family-user.model';
 import {FamilyUserRoles} from '../core/models/family/family-user-roles';
 import {ChildRequest} from '../core/models/family/child-request.model';
 import {ChildRequestStatus} from '../core/models/family/child-request-status';
+import {FinancialStatement} from '../core/models/finance/financial-statement.model';
+import {FinancialStatementType} from '../core/models/finance/financial-statement-type';
+import {ForumPost} from '../core/models/forum/forum-post.model';
+import {ForumAnswer} from '../core/models/forum/forum-answer.model';
+import {FinancialResource} from '../core/models/forum/financial-resource.model';
+
+const addDays = (days: number): Date => {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date;
+};
 
 export class ApplicationBackendStateAuthUser extends AuthUser {
   uuid: string;
@@ -23,6 +34,10 @@ export interface ApplicationBackendState {
   notifications: { [key: number]: UserNotification };
   families: ApplicationBackendFamily[];
   familyChildRequests: { [key: number]: ChildRequest[] };
+  financialStatements: FinancialStatement[];
+  forumPosts: ForumPost[];
+  forumAnswers: ForumAnswer[];
+  forumResources: FinancialResource[];
 }
 
 const applicationState: ApplicationBackendState = {
@@ -128,6 +143,79 @@ const applicationState: ApplicationBackendState = {
       status: ChildRequestStatus.Pending,
       title: 'I neeed dulciuri'
     }]
-  }
+  },
+  financialStatements: [
+    {
+      id: 0,
+      type: FinancialStatementType.Income,
+      amount: 500,
+      familyId: 1,
+      userId: 1,
+      date: addDays(-5),
+      target: 'Magazin 1 SRL'
+    },
+    {
+      id: 1,
+      type: FinancialStatementType.Income,
+      amount: 200,
+      familyId: 1,
+      userId: 1,
+      date: addDays(-4),
+      target: 'Magazin 2 SRL'
+    },
+    {
+      id: 2,
+      type: FinancialStatementType.Income,
+      amount: 400,
+      familyId: 1,
+      userId: 1,
+      date: addDays(-3),
+      target: 'Magazin 2 SRL'
+    },
+    {
+      id: 3,
+      type: FinancialStatementType.Income,
+      amount: 600,
+      familyId: 1,
+      userId: 1,
+      date: addDays(-2),
+      target: 'Magazin 2 SRL'
+    },
+    {
+      id: 4,
+      type: FinancialStatementType.Expense,
+      amount: 600,
+      familyId: 1,
+      userId: 1,
+      date: addDays(-1),
+      target: 'Magazin 2 SRL'
+    },
+    {
+      id: 5,
+      type: FinancialStatementType.Expense,
+      amount: 100,
+      familyId: 1,
+      userId: 0,
+      date: addDays(0),
+      target: 'Magazin 2 SRL'
+    },
+    {
+      id: 6,
+      type: FinancialStatementType.Expense,
+      amount: 100,
+      familyId: 1,
+      userId: 0,
+      date: addDays(1),
+      target: 'Magazin 2 SRL'
+    }
+  ],
+  forumPosts: [{id: 1, description: 'Mega Ultra Question', favorite: false, title: 'Mega Ultra Question ttle'}],
+  forumAnswers: [{id: 1, postId: 1, description: 'Ceva Answer', title: 'Ceva Answer Title'}, {
+    id: 2,
+    postId: 1,
+    description: 'Ceva Answer',
+    title: 'Ceva Answer Title'
+  }, {id: 3, postId: 1, description: 'Ceva Answer', title: 'Ceva Answer Title'}],
+  forumResources: [{id: 1, title: 'How to win money', context: 'book', type: 'pdf'}],
 };
 export default applicationState;

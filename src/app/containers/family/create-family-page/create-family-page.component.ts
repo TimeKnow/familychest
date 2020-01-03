@@ -3,11 +3,9 @@ import {Observable} from 'rxjs';
 import {AuthUser} from '../../../core/models/auth/auth-user.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../store/state/app.state';
-import {GetNotification} from '../../../store/actions/auth.actions';
 import {
   selectCurrentAuthUser,
-  selectCurrentAuthUserIsLoading,
-  selectCurrentUserNotifications
+  selectCurrentAuthUserIsLoading
 } from '../../../store/selectors/auth.selectors';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CreateFamily} from '../../../store/actions/family.actions';

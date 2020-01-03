@@ -1,3 +1,7 @@
 .container-field {
   font-size: small;
 }
+
+.menu-item-container {
+  display: inline-flex !important;
+}

@@ -8,7 +8,7 @@
       [infiniteScrollThrottle]="550"
       (scrolled)="onScrollDown()"
     >
-      <app-child-request-header [request]="data"
+      <app-child-request-header [request]="data" [hasActions]="hasActions"
                                 (optionPressed)="optionPressed.emit($event)"
                                 [familyId]="familyId"></app-child-request-header>
     </div>

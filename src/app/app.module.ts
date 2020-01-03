@@ -62,7 +62,35 @@ import {FamilySelectorComponent} from './shared/containers/family-selector/famil
 import {ChildRequestsDashboardTableComponent} from './components/family/child-requests-dashboard-table/child-requests-dashboard-table.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {ChildRequestsDashboardPageComponent} from './containers/family/child-requests-dashboard-page/child-requests-dashboard-page.component';
-import { ChildRequestHeaderComponent } from './components/family/child-request-header/child-request-header.component';
+import {ChildRequestHeaderComponent} from './components/family/child-request-header/child-request-header.component';
+import {FamilyFinancialTableComponent} from './components/finance/family-financial-table/family-financial-table.component';
+import {FamilyFinancialTablePageComponent} from './containers/finance/family-financial-table-page/family-financial-table-page.component';
+import {PersonalFinancialTableComponent} from './components/finance/personal-financial-table/personal-financial-table.component';
+import {PersonalFinancialTablePageComponent} from './containers/finance/personal-financial-table-page/personal-financial-table-page.component';
+import {GoogleChartsModule} from 'angular-google-charts';
+import {FinancialStatisticsChartsComponent} from './components/finance/financial-statistics-charts/financial-statistics-charts.component';
+import {FinancialStatisticsChartsPageComponent} from './containers/finance/financial-statistics-charts-page/financial-statistics-charts-page.component';
+import {StatisticsChartFilterOptionsComponent} from './components/finance/statistics-chart-filter-options/statistics-chart-filter-options.component';
+import {FinancialStatementFormComponent} from './components/finance/financial-statement-form/financial-statement-form.component';
+import {QuillModule} from 'ngx-quill';
+import {NgxFileDropModule} from 'ngx-file-drop';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CreateFinancialStatementPageComponent } from './containers/finance/create-financial-statement-page/create-financial-statement-page.component';
+import { CreateChildRequestFormComponent } from './components/family/create-child-request-form/create-child-request-form.component';
+import { CreateChildRequestPageComponent } from './containers/family/create-child-request-page/create-child-request-page.component';
+import { ForumPostHeaderComponent } from './components/forum/forum-post-header/forum-post-header.component';
+import { ForumPostTableComponent } from './components/forum/forum-post-table/forum-post-table.component';
+import { ForumPostViewComponent } from './components/forum/forum-post-view/forum-post-view.component';
+import { CreateForumPostFormComponent } from './components/forum/create-forum-post-form/create-forum-post-form.component';
+import { CreateForumAnswerFormComponent } from './components/forum/create-forum-answer-form/create-forum-answer-form.component';
+import { CreateForumResourceFormComponent } from './components/forum/create-forum-resource-form/create-forum-resource-form.component';
+import { ForumResourcesTableComponent } from './components/forum/forum-resources-table/forum-resources-table.component';
+import { ForumPostsPageComponent } from './containers/forum/forum-posts-page/forum-posts-page.component';
+import { ForumSelectedPostPageComponent } from './containers/forum/forum-selected-post-page/forum-selected-post-page.component';
+import { ForumResourcesPageComponent } from './containers/forum/forum-resources-page/forum-resources-page.component';
+import { CreateForumPostPageComponent } from './containers/forum/create-forum-post-page/create-forum-post-page.component';
+import { CreateForumAnswerPageComponent } from './containers/forum/create-forum-answer-page/create-forum-answer-page.component';
+import { CreateForumResourcePageComponent } from './containers/forum/create-forum-resource-page/create-forum-resource-page.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +118,31 @@ import { ChildRequestHeaderComponent } from './components/family/child-request-h
     FamilySelectorComponent,
     ChildRequestsDashboardTableComponent,
     ChildRequestsDashboardPageComponent,
-    ChildRequestHeaderComponent
+    ChildRequestHeaderComponent,
+    FamilyFinancialTableComponent,
+    FamilyFinancialTablePageComponent,
+    PersonalFinancialTableComponent,
+    PersonalFinancialTablePageComponent,
+    FinancialStatisticsChartsComponent,
+    FinancialStatisticsChartsPageComponent,
+    StatisticsChartFilterOptionsComponent,
+    FinancialStatementFormComponent,
+    CreateFinancialStatementPageComponent,
+    CreateChildRequestFormComponent,
+    CreateChildRequestPageComponent,
+    ForumPostHeaderComponent,
+    ForumPostTableComponent,
+    ForumPostViewComponent,
+    CreateForumPostFormComponent,
+    CreateForumAnswerFormComponent,
+    CreateForumResourceFormComponent,
+    ForumResourcesTableComponent,
+    ForumPostsPageComponent,
+    ForumSelectedPostPageComponent,
+    ForumResourcesPageComponent,
+    CreateForumPostPageComponent,
+    CreateForumAnswerPageComponent,
+    CreateForumResourcePageComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +161,8 @@ import { ChildRequestHeaderComponent } from './components/family/child-request-h
       maxAge: 25,
       logOnly: environment.production
     }),
-    InfiniteScrollModule
+    InfiniteScrollModule, GoogleChartsModule,
+    QuillModule.forRoot(), NgxFileDropModule, DragDropModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

@@ -1,12 +1,13 @@
 import {ChildRequestStatus} from './child-request-status';
 
 export class ChildRequest {
-  id: number;
+  id?: number;
   imageUrl?: string;
   senderId: number;
   sender: string;
+  familyId?: number;
   title: string;
   amount: number;
   reason: string;
-  status: ChildRequestStatus;
+  status?: ChildRequestStatus;
 }

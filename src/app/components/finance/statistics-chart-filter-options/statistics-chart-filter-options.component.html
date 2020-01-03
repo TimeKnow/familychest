@@ -1,0 +1,19 @@
+<div class="w-100 center-data">
+  <mat-form-field class="menu-container-field pl-2">
+    <mat-label>Data Filter</mat-label>
+    <mat-select
+    (valueChange)="dataFilterChanged.emit($event)">
+    <mat-option *ngFor="let dataFilter of statisticsDataFilters" [value]="dataFilter">
+      {{dataFilter}}
+    </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="menu-container-field pl-2">
+    <mat-label>Year Filter</mat-label>
+    <mat-select (valueChange)="yearFilterChanged.emit($event)">
+      <mat-option *ngFor="let yearFilter of statisticsYearFilters" [value]="yearFilter">
+        {{yearFilter}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

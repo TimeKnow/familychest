@@ -7,6 +7,7 @@
          *ngIf="!(isLoading$ | async) && !(familyStateIsLoading$ | async); else loadingDisplay">
       <div *ngIf="(currentFamily$ | async); else noFamilySelected">
         <app-child-requests-dashboard-table [data]="childRequests$ | async"
+                                            [hasActions]="!(currentAuthUser$ | async).role.includes('CHILD')"
                                             (optionPressed)="onActionPressed($event)"
                                             [familyId]="(currentFamily$ | async)"></app-child-requests-dashboard-table>
       </div>

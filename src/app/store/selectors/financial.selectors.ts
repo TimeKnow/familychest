@@ -14,3 +14,8 @@ export const selectFinancialStatements = createSelector(
   selectFinancialState,
   (state: FinancialState) => state.statements
 );
+
+export const selectUserFinancialStatements = createSelector(
+  selectFinancialState,
+  (state: FinancialState) => state.statementsUser
+);

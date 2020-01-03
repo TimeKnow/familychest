@@ -18,7 +18,7 @@
       <div class="request_card_header">
         <p class="request_card_amount">Amount Requested: {{request.amount}}</p>
         <div>
-          <button color="primary" mat-flat-button [matMenuTriggerFor]="menu" type="button" aria-label="request-menu">
+          <button color="primary" mat-flat-button [matMenuTriggerFor]="menu" type="button" aria-label="request-menu" *ngIf="hasActions">
             Options
           </button>
           <mat-menu #menu="matMenu">

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(authIsLoading$ | async); else loadingDisplay">
+      <div *ngIf="(currentUser$ | async)">
+        <app-create-child-request-form [form]="form" [families]="families$| async"
+                                       [errorMessage]="errorMessage$| async"
+                                       (formSubmit)="onCreate()"></app-create-child-request-form>
+      </div>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>

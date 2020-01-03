@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <app-family-selector></app-family-selector>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(authIsLoading$ | async) && !(familyIsLoading$ | async) && !(financeStatesIsLoading$ | async); else loadingDisplay">
+      <div>
+        <app-family-financial-table [dataList]="familyFinancialStatusList$ | async"></app-family-financial-table>
+      </div>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,12 +1,13 @@
 import {FinancialStatementType} from './financial-statement-type';
 
 export class FinancialStatement {
-  id: number;
+  id?: number;
   type: FinancialStatementType;
+  userId: number;
   familyId: number;
   amount: number;
+  date: Date;
   target?: string;
   description?: string;
-  images?: Blob[];
-  data?: string;
+  images?: Blob[] | string[];
 }

@@ -13,6 +13,7 @@ const batchSize = 2;
 export class ChildRequestsDashboardTableComponent implements OnInit, OnChanges {
   @Input() data: ChildRequest[];
   @Input() familyId: number;
+  @Input() hasActions = true;
   @Output() optionPressed: EventEmitter<ChildRequestAction> = new EventEmitter<ChildRequestAction>();
   displayedData: ChildRequest[] = [];
   displayedCount = 1;

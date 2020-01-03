@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <button mat-flat-button routerLink="/forum/resources/create">Add Resource</button>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(isLoading$ | async) && !(isForumStateLoading$ | async); else loadingDisplay">
+      <div>
+        <app-forum-resources-table [dataList]="forumResources$ | async"></app-forum-resources-table>
+      </div>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>

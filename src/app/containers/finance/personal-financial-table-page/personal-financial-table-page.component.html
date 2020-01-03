@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <button mat-raised-button routerLink="/finance/create" color="accent">Create Statement</button>
+      <button mat-raised-button routerLink="/finance/statistics" color="accent" class="pl-2 ml-2">View Statistics</button>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(authIsLoading$ | async) && !(financeStatesIsLoading$ | async); else loadingDisplay">
+      <div *ngIf="(currentUser$ | async)">
+        <app-personal-financial-table [dataList]="userFinancialStatements$ | async"
+                                      (emitAction)="onDeleteActionPressed($event)"></app-personal-financial-table>
+      </div>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>

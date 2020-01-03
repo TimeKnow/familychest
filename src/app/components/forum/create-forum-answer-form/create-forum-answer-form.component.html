@@ -1,0 +1,39 @@
+<mat-card class="no-border-radius">
+  <mat-card-content *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="formSubmit.emit()" class="form-container w-100">
+      <mat-form-field class="container-field centered">
+        <mat-label for="titleInput">Title</mat-label>
+        <input matInput class="w-100" type="text" id="titleInput" formControlName="title">
+      </mat-form-field>
+
+      <div class="container-field rich-text-editor">
+        <quill-editor [styles]="editorStyles" [placeholder]="editorPlaceholder"
+                      formControlName="description">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <button [title]="'Bold'" class="ql-bold" type="button"></button>
+              <button [title]="'Italic'" class="ql-italic" type="button"></button>
+              <button [title]="'Underline'" class="ql-underline" type="button"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" type="button" value="ordered"></button>
+              <button class="ql-list" type="button" value="bullet"></button>
+            </span>
+          </div>
+        </quill-editor>
+      </div>
+
+      <div class="container-field text-centered">
+        <b class="error-colored" *ngIf="errorMessage">{{errorMessage}}</b>
+      </div>
+
+      <div class="container-field centered">
+        <button class="w-100" color="accent" id="submitButton" mat-raised-button
+                type="submit"
+                [disabled]="!form.valid">
+          Create
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

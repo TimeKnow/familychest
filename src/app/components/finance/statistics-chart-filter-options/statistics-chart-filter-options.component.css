@@ -1,0 +1,12 @@
+.menu-container-field {
+  display: inline-flex;
+  font-size: small;
+}
+
+.center-data {
+  justify-items: center !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}

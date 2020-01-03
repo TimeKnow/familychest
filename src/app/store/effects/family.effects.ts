@@ -5,19 +5,32 @@ import {catchError, filter, map, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {FamilyService} from '../../core/services/family.service';
 import {
-  AddMemberToFamily, AddMemberToFamilySuccess, ChangeFamilyChildRequestStatus, ChangeFamilyChildRequestStatusSuccess,
-  CreateFamily, CreateFamilySuccess,
+  AddMemberToFamily,
+  AddMemberToFamilySuccess,
+  ChangeFamilyChildRequestStatus,
+  ChangeFamilyChildRequestStatusSuccess,
+  CreateChildRequest,
+  CreateChildRequestSuccess,
+  CreateFamily,
+  CreateFamilySuccess,
   FamilyActionsTypes,
-  GenerateCodeForChild, GenerateCodeForChildSuccess, GetAvailableUserForFamily, GetAvailableUserForFamilySuccess,
+  GenerateCodeForChild,
+  GenerateCodeForChildSuccess,
+  GetAvailableUserForFamily,
+  GetAvailableUserForFamilySuccess,
   GetFamilies,
-  GetFamiliesSuccess, GetFamilyChildRequests, GetFamilyChildRequestsSuccess,
+  GetFamiliesSuccess,
+  GetFamilyChildRequests,
+  GetFamilyChildRequestsSuccess,
   GetFamilyMembers,
-  GetFamilyMembersSuccess, SelectCurrentFamily
+  GetFamilyMembersSuccess,
+  SelectCurrentFamily
 } from '../actions/family.actions';
 import {Family} from '../../core/models/family/family.model';
 import {HttpError} from '../actions/http-errors.actions';
 import {FamilyUser} from '../../core/models/family/family-user.model';
 import {ChildRequest} from '../../core/models/family/child-request.model';
+import {GetFinancialStatementsForFamily} from '../actions/financial.actions';
 
 @Injectable()
 export class FamilyEffects {
@@ -71,6 +84,21 @@ export class FamilyEffects {
     ))
   );
 
+  @Effect()
+  createChildRequest$ = this.actions$.pipe(
+    ofType<CreateChildRequest>(FamilyActionsTypes.CreateChildRequest),
+    switchMap(action => this.familyService.createChildRequestForFamily(action.payload).pipe(
+      map((childRequest: ChildRequest) => new CreateChildRequestSuccess(childRequest)),
+      catchError(error => of(new HttpError(error)))
+    ))
+  );
+
+  @Effect({dispatch: false})
+  createChildRequestSuccess$ = this.actions$.pipe(
+    ofType<CreateChildRequestSuccess>(FamilyActionsTypes.CreateChildRequestSuccess),
+    tap(() => this.router.navigateByUrl('family/child-requests'))
+  );
+
   @Effect({dispatch: false})
   createFamilySuccess$ = this.actions$.pipe(
     ofType<CreateFamilySuccess>(FamilyActionsTypes.CreateFamilySuccess),
@@ -107,7 +135,7 @@ export class FamilyEffects {
   selectCurrentFamily$ = this.actions$.pipe(
     ofType<SelectCurrentFamily>(FamilyActionsTypes.SelectCurrentFamily),
     filter(action => !!(+action.payload)),
-    switchMap(action => [new GetFamilyMembers(action.payload), new GetFamilyChildRequests(action.payload)])
+    switchMap(action => [new GetFamilyMembers(action.payload), new GetFamilyChildRequests(action.payload), new GetFinancialStatementsForFamily(action.payload)])
   );
 
   @Effect()

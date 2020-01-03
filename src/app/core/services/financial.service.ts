@@ -17,18 +17,23 @@ export class FinancialService {
   }
 
   getFinancialStatementsByFamily(familyId: number): Observable<FinancialStatement[]> {
-    return this.http.get<FinancialStatement[]>('/api/family/' + familyId + '/financial-statements', this.httpOptions);
+    return this.http.get<FinancialStatement[]>('/api/families/' + familyId + '/financial-statements', this.httpOptions);
   }
 
+
   createFinancialStatementsByFamily(statement: FinancialStatement): Observable<FinancialStatement> {
-    return this.http.post<FinancialStatement>('/api/family/' + statement.familyId + '/financial-statements', statement, this.httpOptions);
+    return this.http.post<FinancialStatement>('/api/families/' + statement.familyId + '/financial-statements', statement, this.httpOptions);
   }
 
   updateFinancialStatementsByFamily(statement: FinancialStatement): Observable<FinancialStatement> {
-    return this.http.put<FinancialStatement>('/api/family/' + statement.familyId + '/financial-statements', statement, this.httpOptions);
+    return this.http.put<FinancialStatement>('/api/families/' + statement.familyId + '/financial-statements', statement, this.httpOptions);
   }
 
-  removeFinancialStatementsByFamily(statement: FinancialStatement): Observable<{}> {
-    return this.http.delete<{}>('/api/family/' + statement.familyId + '/financial-statements/' + statement.id, this.httpOptions);
+  getFinancialStatementsByUser(userId: number): Observable<FinancialStatement[]> {
+    return this.http.get<FinancialStatement[]>('/api/finances/' + userId, this.httpOptions);
+  }
+
+  removeFinancialStatement(statementId: number): Observable<{}> {
+    return this.http.delete<{}>('/api/finances/' + statementId, this.httpOptions);
   }
 }

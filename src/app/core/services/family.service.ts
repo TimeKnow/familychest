@@ -48,7 +48,11 @@ export class FamilyService {
     return this.http.get<ChildRequest[]>('/api/families/' + familyId + '/child-requests', this.httpOptions);
   }
 
+  createChildRequestForFamily(childRequest: ChildRequest): Observable<ChildRequest> {
+    return this.http.post<ChildRequest>('/api/families/' + childRequest.familyId + '/child-requests', childRequest, this.httpOptions);
+  }
+
   changeChildRequestStatus(action: ChildRequestAction): Observable<{}> {
-    return this.http.post<{}>('/api/families/' + action.familyId + '/child-requests', action, this.httpOptions);
+    return this.http.put<{}>('/api/families/' + action.familyId + '/child-requests', action, this.httpOptions);
   }
 }

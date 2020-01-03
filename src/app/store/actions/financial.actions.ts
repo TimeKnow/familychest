@@ -8,8 +8,10 @@ export enum FinancialActionsTypes {
   CreateFinancialStatementForFamilySuccess = '[Financial] Create Financial Statement for Family Success',
   UpdateFinancialStatementForFamily = '[Financial] Update Financial Statement for Family',
   UpdateFinancialStatementForFamilySuccess = '[Financial] Update Financial Statement for Family Success',
-  RemoveFinancialStatementForFamily = '[Financial] Remove Financial Statement for Family',
-  RemoveFinancialStatementForFamilySuccess = '[Financial] Remove Financial Statement for Family Success',
+  RemoveFinancialStatement = '[Financial] Remove Financial Statement',
+  RemoveFinancialStatementSuccess = '[Financial] Remove Financial Statement Success',
+  GetFinancialStatementsForUser = '[Financial] Get Financial Statements for User',
+  GetFinancialStatementsForUserSuccess = '[Financial] Get Financial Statements for User Success',
 }
 
 export class GetFinancialStatementsForFamily implements Action {
@@ -55,16 +57,30 @@ export class UpdateFinancialStatementForFamilySuccess implements Action {
 }
 
 export class RemoveFinancialStatementForFamily implements Action {
-  public readonly type = FinancialActionsTypes.RemoveFinancialStatementForFamily;
+  public readonly type = FinancialActionsTypes.RemoveFinancialStatement;
 
-  constructor(public payload: Partial<FinancialStatement>) {
+  constructor(public payload: number) {
   }
 }
 
 export class RemoveFinancialStatementForFamilySuccess implements Action {
-  public readonly type = FinancialActionsTypes.RemoveFinancialStatementForFamilySuccess;
+  public readonly type = FinancialActionsTypes.RemoveFinancialStatementSuccess;
 
-  constructor(public payload: Partial<FinancialStatement>) {
+  constructor(public payload: number) {
+  }
+}
+
+export class GetFinancialStatementsForUser implements Action {
+  public readonly type = FinancialActionsTypes.GetFinancialStatementsForUser;
+
+  constructor(public payload: number) {
+  }
+}
+
+export class GetFinancialStatementsForUserSuccess implements Action {
+  public readonly type = FinancialActionsTypes.GetFinancialStatementsForUserSuccess;
+
+  constructor(public payload: FinancialStatement[]) {
   }
 }
 
@@ -76,4 +92,6 @@ export type FinancialActions =
   | UpdateFinancialStatementForFamily
   | UpdateFinancialStatementForFamilySuccess
   | RemoveFinancialStatementForFamily
-  | RemoveFinancialStatementForFamilySuccess;
+  | RemoveFinancialStatementForFamilySuccess
+  | GetFinancialStatementsForUser
+  | GetFinancialStatementsForUserSuccess;

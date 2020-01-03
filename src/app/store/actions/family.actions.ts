@@ -22,7 +22,9 @@ export enum FamilyActionsTypes {
   GetFamilyChildRequests = '[Family] Get Child Requests for Family',
   GetFamilyChildRequestsSuccess = '[Family] Get Child Requests for Family Success',
   ChangeFamilyChildRequestStatus = '[Family] Change Child Request Status',
-  ChangeFamilyChildRequestStatusSuccess = '[Family] Change Child Request Status Success'
+  ChangeFamilyChildRequestStatusSuccess = '[Family] Change Child Request Status Success',
+  CreateChildRequest = '[Family] Create Child Request',
+  CreateChildRequestSuccess = '[Family] Create Child Request Success',
 }
 
 export class SelectCurrentFamily implements Action {
@@ -138,6 +140,20 @@ export class ChangeFamilyChildRequestStatusSuccess implements Action {
   }
 }
 
+export class CreateChildRequest implements Action {
+  public readonly type = FamilyActionsTypes.CreateChildRequest;
+
+  constructor(public payload: ChildRequest) {
+  }
+}
+
+export class CreateChildRequestSuccess implements Action {
+  public readonly type = FamilyActionsTypes.CreateChildRequestSuccess;
+
+  constructor(public payload: ChildRequest) {
+  }
+}
+
 export type FamilyActions =
   SelectCurrentFamily
   | GetFamilies
@@ -155,4 +171,6 @@ export type FamilyActions =
   | GetFamilyChildRequests
   | GetFamilyChildRequestsSuccess
   | ChangeFamilyChildRequestStatus
-  | ChangeFamilyChildRequestStatusSuccess;
+  | ChangeFamilyChildRequestStatusSuccess
+  | CreateChildRequest
+  | CreateChildRequestSuccess;

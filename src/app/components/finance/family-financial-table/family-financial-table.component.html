@@ -1,0 +1,25 @@
+<table *ngIf="dataList" mat-table [dataSource]="dataList" class="mat-elevation-z8 w-100">
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Id</th>
+    <td mat-cell *matCellDef="let element" class="text-centered"> {{element.userId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Name</th>
+    <td mat-cell *matCellDef="let element" class="text-centered"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Email</th>
+    <td mat-cell *matCellDef="let element" class="text-centered"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="currentAccountBalance">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Account Balance</th>
+    <td mat-cell *matCellDef="let element" class="text-centered"> {{element.currentAccountBalance}} </td>
+  </ng-container>
+  <ng-container matColumnDef="statementCoefficient">
+    <th mat-header-cell *matHeaderCellDef class="text-centered">Statement Coefficient</th>
+    <td mat-cell *matCellDef="let element" class="text-centered"> {{element.statementCoefficient}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="dataHeaders; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: dataHeaders;"></tr>
+</table>

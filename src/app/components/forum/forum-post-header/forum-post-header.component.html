@@ -1,0 +1,23 @@
+<mat-card class="request_card">
+  <div class="request_card_image_container">
+    <img mat-card-image src="{{data.image || 'assets/static-images/none.jpg'}}" class="request_card_image"
+         alt="request image">
+  </div>
+  <div class="request_card_content">
+    <div class="request_card_header">
+      <span class="request_card_title">
+        <b>{{data.title}}</b>
+      </span>
+      <span class="request_card_status">
+          <button color="primary" mat-flat-button routerLink="/forum/{{data.id}}" type="button"
+                  aria-label="request-menu">
+            View
+          </button>
+      </span>
+    </div>
+    <mat-divider class="request_card_divider"></mat-divider>
+    <div class="request_card_text">
+      <p [innerHTML]="data.description"></p>
+    </div>
+  </div>
+</mat-card>

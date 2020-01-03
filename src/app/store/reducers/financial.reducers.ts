@@ -25,15 +25,16 @@ export function financialReducers(state: FinancialState = initialFinancialState,
         loading: false,
         statements: state.statements.concat([action.payload])
       };
-    case FinancialActionsTypes.RemoveFinancialStatementForFamily:
+    case FinancialActionsTypes.RemoveFinancialStatement:
       return {
         ...state,
         loading: true
       };
-    case FinancialActionsTypes.RemoveFinancialStatementForFamilySuccess:
+    case FinancialActionsTypes.RemoveFinancialStatementSuccess:
       return {
         ...state,
-        statements: state.statements.filter(x => x.id !== action.payload.id),
+        statements: state.statements.filter(x => x.id !== action.payload),
+        statementsUser: state.statementsUser.filter(x => x.id !== action.payload),
         loading: false
       };
     case FinancialActionsTypes.UpdateFinancialStatementForFamily:
@@ -47,6 +48,17 @@ export function financialReducers(state: FinancialState = initialFinancialState,
         ...state,
         statements: state.statements.filter(x => x.id !== action.payload.id).concat([updatedElement]),
         loading: false
+      };
+    case FinancialActionsTypes.GetFinancialStatementsForUser:
+      return {
+        ...state,
+        loading: true
+      };
+    case FinancialActionsTypes.GetFinancialStatementsForUserSuccess:
+      return {
+        ...state,
+        loading: false,
+        statementsUser: action.payload
       };
     default:
       return state;

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="menu-container">
+    <app-menu-handler>
+      <mat-form-field class="menu-container-field">
+        <mat-label>Option</mat-label>
+        <mat-select (valueChange)="onDataTypeChange($event)">
+          <mat-option *ngFor="let dataType of chartDataTypes" [value]="dataType">
+            {{dataType}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-family-selector *ngIf="selectedDataType && selectedDataType==='Family'"></app-family-selector>
+    </app-menu-handler>
+    <div class="w-100"
+         *ngIf="!(authIsLoading$ | async) && !(familyIsLoading$ | async) && !(financeStatesIsLoading$ | async); else loadingDisplay">
+      <div *ngIf="chartData$ | async; else noData">
+        <mat-card class="no-border-radius">
+          <app-statistics-chart-filter-options
+            (dataFilterChanged)="onDataFilterChanged($event)"
+            (yearFilterChanged)="onYearFilterChanged($event)"></app-statistics-chart-filter-options>
+          <app-financial-statistics-charts [chartData]="chartData$ | async"></app-financial-statistics-charts>
+        </mat-card>
+      </div>
+      <mat-card>
+        <ng-template #noData>
+          <div class="message_container pt-3">
+            <mat-card class="message_card">
+              <span class="message_text">No data to Show</span>
+            </mat-card>
+          </div>
+        </ng-template>
+      </mat-card>
+    </div>
+    <ng-template #loadingDisplay>
+      <div class="w-100 centered pt-3">
+        <app-loading-display></app-loading-display>
+      </div>
+    </ng-template>
+  </div>
+</div>
