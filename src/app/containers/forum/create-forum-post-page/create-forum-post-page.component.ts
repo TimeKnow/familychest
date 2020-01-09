@@ -29,14 +29,16 @@ export class CreateForumPostPageComponent implements OnInit {
     this.errorMessage$ = this.store.select(selectHttpErrorMessage);
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required])
+      description: new FormControl('', [Validators.required]),
+      image: new FormControl(null)
     });
   }
 
   onCreate() {
     const payload: ForumPost = {
       title: this.form.get('title').value,
-      description: this.form.get('description').value
+      description: this.form.get('description').value,
+      image: this.form.get('image').value
     };
     this.store.dispatch(new CreateForumPost(payload));
   }

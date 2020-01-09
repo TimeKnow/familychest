@@ -34,6 +34,7 @@ export class CreateChildRequestFormComponent {
           reader.readAsDataURL(file);
           reader.onload = () => {
             this.images.push(reader.result);
+            this.form.get('image').setValue(reader.result);
           };
         });
       }

@@ -40,6 +40,7 @@ export interface ApplicationBackendState {
   forumResources: FinancialResource[];
 }
 
+// TODO: Modify data
 const applicationState: ApplicationBackendState = {
   currentSession: {
     id: 1,
@@ -47,7 +48,7 @@ const applicationState: ApplicationBackendState = {
     uuid: '',
     name: 'parent',
     password: 'parent',
-    role: AuthUserRoles.Parent
+    role: AuthUserRoles.Child
   },
   childUUIDs: ['1', '2'],
   users: [

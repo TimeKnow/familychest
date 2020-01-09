@@ -2,7 +2,7 @@ import {ChildRequestStatus} from './child-request-status';
 
 export class ChildRequest {
   id?: number;
-  imageUrl?: string;
+  imageUrl?: Blob| string;
   senderId: number;
   sender: string;
   familyId?: number;

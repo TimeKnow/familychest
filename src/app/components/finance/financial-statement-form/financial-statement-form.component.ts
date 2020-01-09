@@ -34,6 +34,7 @@ export class FinancialStatementFormComponent {
           reader.readAsDataURL(file);
           reader.onload = () => {
             this.images.push(reader.result);
+            this.form.get('images').setValue(reader.result);
           };
         });
       }

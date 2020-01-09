@@ -40,7 +40,7 @@ export class CreateChildRequestPageComponent implements OnInit {
       selectedFamily: new FormControl(null, [Validators.required]),
       amountInput: new FormControl(null, [Validators.required]),
       reason: new FormControl('', [Validators.required]),
-      images: new FormControl(null),
+      image: new FormControl(null),
     });
   }
 
@@ -52,6 +52,7 @@ export class CreateChildRequestPageComponent implements OnInit {
       familyId: this.form.get('selectedFamily').value,
       amount: this.form.get('amountInput').value,
       reason: this.form.get('reason').value,
+      imageUrl: this.form.get('image').value,
     };
     this.store.dispatch(new CreateChildRequest(payload));
   }
