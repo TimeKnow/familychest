@@ -44,28 +44,28 @@ export interface ApplicationBackendState {
 const applicationState: ApplicationBackendState = {
   currentSession: {
     id: 1,
-    email: 'parent@email.com',
+    email: 'JohnnyDoeChild@email.com',
     uuid: '',
-    name: 'parent',
-    password: 'parent',
+    name: 'JohnDoe',
+    password: 'parola',
     role: AuthUserRoles.Child
   },
   childUUIDs: ['1', '2'],
   users: [
     {
       id: 0,
-      email: 'child@email.com',
+      email: 'JanieDoeChild@email.com',
       uuid: '',
-      name: 'child',
-      password: 'child',
+      name: 'JanieDoe',
+      password: 'parola',
       role: AuthUserRoles.Child
     },
     {
       id: 1,
-      email: 'parent@email.com',
+      email: 'JohnDoeParent@email.com',
       uuid: '',
-      name: 'parent',
-      password: 'parent',
+      name: 'JohnDoe',
+      password: 'parola',
       role: AuthUserRoles.Parent
     },
     {
@@ -111,13 +111,13 @@ const applicationState: ApplicationBackendState = {
   families: [
     {
       id: 1,
-      name: 'Family 1',
+      name: 'Doe',
       members: [
         {
           user: {
             id: 1,
-            email: 'parent@email.com',
-            name: 'parent',
+            email: 'JohnDoeParent@email.com',
+            name: 'JohnDoe',
             role: AuthUserRoles.Parent
           },
           role: FamilyUserRoles.Father
@@ -125,8 +125,8 @@ const applicationState: ApplicationBackendState = {
         {
           user: {
             id: 0,
-            email: 'child@email.com',
-            name: 'child',
+            email: 'JohnnyDoeChild@email.com',
+            name: 'JohnnyDoe',
             role: AuthUserRoles.Child
           },
           role: FamilyUserRoles.Child
@@ -138,11 +138,11 @@ const applicationState: ApplicationBackendState = {
     1: [{
       id: 0,
       senderId: 0,
-      sender: 'child',
+      sender: 'JohnnyDoe',
       amount: 500,
-      reason: 'I am fat',
+      reason: 'I want a new gane',
       status: ChildRequestStatus.Pending,
-      title: 'I neeed dulciuri'
+      title: 'Monopoly'
     }]
   },
   financialStatements: [
@@ -210,13 +210,13 @@ const applicationState: ApplicationBackendState = {
       target: 'Magazin 2 SRL'
     }
   ],
-  forumPosts: [{id: 1, description: 'Mega Ultra Question', favorite: false, title: 'Mega Ultra Question ttle'}],
-  forumAnswers: [{id: 1, postId: 1, description: 'Ceva Answer', title: 'Ceva Answer Title'}, {
+  forumPosts: [{id: 1, description: 'I want to know the best way to manage my money.', favorite: false, title: 'How to manage my spendings?'}],
+  forumAnswers: [{id: 1, postId: 1, description: 'You should check the book "Financial Peace"', title: 'Best book'}, {
     id: 2,
     postId: 1,
-    description: 'Ceva Answer',
-    title: 'Ceva Answer Title'
-  }, {id: 3, postId: 1, description: 'Ceva Answer', title: 'Ceva Answer Title'}],
+    description: 'I recommend you "Secrets of the millionaire mind"',
+    title: 'Secrets of the millionaire mind'
+  }, {id: 3, postId: 1, description: 'Check this article: https://www.thebalance.com/ways-to-be-better-with-money-960664', title: '10 ways to manage your money'}],
   forumResources: [{id: 1, title: 'How to win money', context: 'book', type: 'pdf'}],
 };
 export default applicationState;
