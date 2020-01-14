@@ -1,7 +1,7 @@
 <div class="container">
   <div class="menu-container">
     <app-menu-handler>
-      <button mat-flat-button routerLink="/forum/resources/create">Add Resource</button>
+      <button mat-flat-button color="accent" routerLink="/forum/resources/create">Add Resource</button>
     </app-menu-handler>
     <div class="w-100"
          *ngIf="!(isLoading$ | async) && !(isForumStateLoading$ | async); else loadingDisplay">
