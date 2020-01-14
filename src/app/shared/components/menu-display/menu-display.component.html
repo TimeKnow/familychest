@@ -20,24 +20,24 @@
 
         <button class="menu-btn" mat-menu-item *ngIf="currentUser" [matMenuTriggerFor]="financeMenu"
                 aria-label="Menu Finance">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>attach_money</mat-icon>
           Finance
         </button>
 
         <button class="menu-btn" mat-menu-item *ngIf="currentUser" [matMenuTriggerFor]="forumMenu"
                 aria-label="Menu Forum">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>forum</mat-icon>
           Forum
         </button>
 
         <div class="menu-btn" mat-menu-item *ngIf="!currentUser; else logoutButton" routerLink="/login">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>exit_to_app</mat-icon>
           Login
         </div>
 
         <ng-template #logoutButton>
           <button class="menu-btn" mat-menu-item (click)="logout.emit()">
-            <mat-icon>supervised_user_circle</mat-icon>
+            <mat-icon>arrow_back</mat-icon>
             Logout
           </button>
         </ng-template>
@@ -54,14 +54,14 @@
         <button class="menu-btn" mat-menu-item
                 *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
                 routerLink="/family/create-child-account">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>face</mat-icon>
           Create Child Account
         </button>
 
         <button class="menu-btn" mat-menu-item
                 *ngIf="currentUser.role.includes('PARENT') || currentUser.role.includes('ADMIN')"
                 routerLink="/family/add-member">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>person_add</mat-icon>
           Add Members
         </button>
 
@@ -72,13 +72,13 @@
 
         <button class="menu-btn" mat-menu-item
                 routerLink="/family/child-requests">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>dashboard</mat-icon>
           Child Requests Dashboard
         </button>
         <button class="menu-btn" mat-menu-item
                 *ngIf="currentUser.role.includes('CHILD') || currentUser.role.includes('ADMIN')"
                 routerLink="/family/child-requests/create">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>attach_money</mat-icon>
           Request Money
         </button>
       </mat-menu>
@@ -86,41 +86,41 @@
       <mat-menu #financeMenu="matMenu">
         <button class="menu-btn" mat-menu-item
                 routerLink="/finance/family-members">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>credit_card</mat-icon>
           Family Finances
         </button>
         <button class="menu-btn" mat-menu-item
                 routerLink="/finance/personal">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>attach_money</mat-icon>
           Personal Finances
         </button>
         <button class="menu-btn" mat-menu-item
                 routerLink="/finance/statistics">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>assessment</mat-icon>
           Financial Statistics
         </button>
         <button class="menu-btn" mat-menu-item
                 routerLink="/finance/create">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>create</mat-icon>
           Create Statement
         </button>
       </mat-menu>
 
       <mat-menu #forumMenu="matMenu">
         <button class="menu-btn" mat-menu-item routerLink="/forum">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>local_library</mat-icon>
           See Posts
         </button>
         <button class="menu-btn" mat-menu-item routerLink="/forum/resources">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>library_books</mat-icon>
           See Resources
         </button>
         <button class="menu-btn" mat-menu-item routerLink="/forum/create">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>post_add</mat-icon>
           Create a Post
         </button>
         <button class="menu-btn" mat-menu-item routerLink="/forum/resources/create">
-          <mat-icon>supervised_user_circle</mat-icon>
+          <mat-icon>add_circle_outline</mat-icon>
           Add Resource
         </button>
       </mat-menu>

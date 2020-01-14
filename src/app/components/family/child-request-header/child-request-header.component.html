@@ -24,17 +24,17 @@
           <mat-menu #menu="matMenu">
             <button mat-menu-item class="menu-btn w-100"
                     (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Approve})">
-              <mat-icon>supervised_user_circle</mat-icon>
+              <mat-icon>check_circle</mat-icon>
               Approve
             </button>
             <button mat-menu-item class="menu-btn w-100"
                     (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Reject})">
-              <mat-icon>supervised_user_circle</mat-icon>
+              <mat-icon>clear</mat-icon>
               Reject
             </button>
             <button mat-menu-item class="menu-btn w-100"
                     (click)="optionPressed.emit({familyId: familyId, requestId: request.id, type: actionTypes.Remove})">
-              <mat-icon>supervised_user_circle</mat-icon>
+              <mat-icon>remove_circle_outline</mat-icon>
               Remove
             </button>
           </mat-menu>

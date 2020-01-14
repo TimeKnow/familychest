@@ -24,12 +24,12 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item class="menu-btn w-100" (click)="emitAction.emit(element.id)">
-            <mat-icon>supervised_user_circle</mat-icon>
+            <mat-icon>remove_circle_outline</mat-icon>
             Remove
           </button>
           <button mat-menu-item class="menu-btn w-100" routerLink="/finance/create"
                   (click)="emitAction.emit(element.id)">
-            <mat-icon>supervised_user_circle</mat-icon>
+            <mat-icon>edit_attributes</mat-icon>
             Modify
           </button>
         </mat-menu>
