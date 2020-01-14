@@ -7,6 +7,9 @@
     <div class="request_card_header">
       <span class="request_card_title">
         <b>{{data.title}}</b>
+        <button mat-icon-button [color]="buttonColor" aria-label="Example icon-button with a heart icon" (click)="onFavorite()">
+          <mat-icon>favorite</mat-icon>
+        </button>
       </span>
       <span class="request_card_status">
           <button color="primary" mat-flat-button routerLink="/forum/{{data.id}}" type="button"

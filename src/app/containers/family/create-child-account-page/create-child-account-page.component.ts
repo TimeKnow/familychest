@@ -32,7 +32,7 @@ export class CreateChildAccountPageComponent implements OnInit {
     this.isLoading$ = this.store.select(selectCurrentAuthUserIsLoading);
     this.currentUser$ = this.store.select(selectCurrentAuthUser);
     this.generatedCode$ = this.store.select(selectFamilyStateGeneratedCode);
-    this.generatedCode$ = this.store.select(selectHttpErrorMessage);
+    this.errorMessage$ = this.store.select(selectHttpErrorMessage);
     this.userFamilies$ = this.store.select(selectFamilies);
     this.form = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),

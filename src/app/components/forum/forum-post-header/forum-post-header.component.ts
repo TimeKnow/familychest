@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {ForumPost} from '../../../core/models/forum/forum-post.model';
 
 @Component({
@@ -8,4 +8,14 @@ import {ForumPost} from '../../../core/models/forum/forum-post.model';
 })
 export class ForumPostHeaderComponent {
   @Input() data: ForumPost;
+
+  constructor(private changeRef: ChangeDetectorRef) {
+  }
+
+  buttonColor = 'accent';
+
+  onFavorite() {
+    this.buttonColor = this.buttonColor === 'accent' ? 'primary' : 'accent';
+    this.changeRef.detectChanges();
+  }
 }

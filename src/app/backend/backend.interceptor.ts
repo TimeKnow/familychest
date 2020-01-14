@@ -23,7 +23,7 @@ export class BackendInterceptor implements HttpInterceptor {
     return of(null)
       .pipe(mergeMap(handleRequest))
       .pipe(materialize())
-      .pipe(delay(500))
+      .pipe(delay(250))
       .pipe(dematerialize());
 
     function handleRequest(): Observable<any> {
@@ -46,6 +46,8 @@ export class BackendInterceptor implements HttpInterceptor {
           return handleGetFamilyMembers();
         case req.url.match(/\/families\/members$/) && method === 'GET':
           return handleGetAvailableUserForFamily();
+        case req.url.match(/\/families\/\d+\/generate-code$/) && method === 'POST':
+          return generateChildCode();
         case req.url.match(/\/families\/\d+\/financial-statements$/) && method === 'GET':
           return handleGetFamilyFinancialStatements();
         case req.url.match(/\/families\/\d+\/financial-statements$/) && method === 'POST':
@@ -85,6 +87,24 @@ export class BackendInterceptor implements HttpInterceptor {
         default:
           return okRequest('');
       }
+    }
+
+    function generateChildCode() {
+      if (!applicationState.currentSession) {
+        return unauthorizedRequest();
+      }
+      const urlParts = url.split('/');
+      const id = Number(urlParts[urlParts.length - 2]);
+      if (!id) {
+        return badRequest('Invalid request format!');
+      }
+      const uuid = Math.random().toString(36).substring(4);
+      applicationState.childUUIDs = applicationState.childUUIDs.concat([uuid]);
+      const childUser = {uuid, email: body.email} as any;
+      applicationState.users = applicationState.users.concat([childUser]);
+      const selectedFamily = applicationState.families.find(x => x.id === id);
+      selectedFamily.members = selectedFamily.members.concat([childUser]);
+      return okRequest(uuid);
     }
 
     function handleCreateResource() {
@@ -150,8 +170,6 @@ export class BackendInterceptor implements HttpInterceptor {
       if (!applicationState.currentSession) {
         return unauthorizedRequest();
       }
-      console.log('here');
-      console.log(applicationState.forumResources);
       return okRequest(applicationState.forumResources);
     }
 
@@ -370,6 +388,13 @@ export class BackendInterceptor implements HttpInterceptor {
             doesUserExist.uuid = requestBody.uuid;
             doesUserExist.name = requestBody.name;
             doesUserExist.password = requestBody.password;
+            doesUserExist.role = AuthUserRoles.Child;
+            // const family = applicationState.families.find(f => f.members.find((x: any) => x.uuid === requestBody.uuid));
+            // const childAccount = family.members.find((x: any) => x.uuid === requestBody.uuid) as any;
+            // childAccount.uuid = requestBody.uuid;
+            // childAccount.name = requestBody.name;
+            // childAccount.password = requestBody.password;
+            // childAccount.role = AuthUserRoles.Child;
             applicationState.childUUIDs = applicationState.childUUIDs.filter(x => requestBody.uuid === x);
             return okRequest('Account created');
           }
@@ -385,7 +410,7 @@ export class BackendInterceptor implements HttpInterceptor {
               password: requestBody.password,
               uuid: '',
               name: requestBody.name,
-              role: registrationRole
+              role: AuthUserRoles.Parent
             }]);
             return okRequest('Account Created');
           }

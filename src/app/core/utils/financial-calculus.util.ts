@@ -15,6 +15,6 @@ export function calculateTotalAmountForStatements(statements: FinancialStatement
 export function getStatementsCoefficient(statements: FinancialStatement[]): number {
   const groupedStatements: { [key: number]: FinancialStatement[] } = groupByObjectStringAttribute(statements, 'type');
   const totalIncome = groupedStatements[FinancialStatementType.Income] ? groupedStatements[FinancialStatementType.Income].length : 0;
-  const totalExpense = groupedStatements[FinancialStatementType.Expense] ? groupedStatements[FinancialStatementType.Expense].length : 0;
+  const totalExpense = groupedStatements[FinancialStatementType.Expense] ? groupedStatements[FinancialStatementType.Expense].length : 1;
   return totalIncome / totalExpense;
 }

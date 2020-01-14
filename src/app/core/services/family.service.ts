@@ -33,7 +33,7 @@ export class FamilyService {
   }
 
   generateCodeForChild(childEmail: string, familyId: number): Observable<string> {
-    return this.http.post<string>('/api/families/' + familyId + '/generate-code', this.httpOptions);
+    return this.http.post<string>('/api/families/' + familyId + '/generate-code', {email: childEmail}, this.httpOptions);
   }
 
   addMemberToFamily(memberId: number, familyId: number, role: string): Observable<{}> {
